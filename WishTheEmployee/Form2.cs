@@ -43,9 +43,9 @@ namespace WishTheEmployee
             }
 
             // Populate the Combo Box
-            cbAlias.ValueMember = listOfEmpProfiles.employeeProfiles.FirstOrDefault<EmployeeProfile>().Alias;
             cbAlias.DataSource = listOfEmpProfiles.employeeProfiles;
-           
+            cbAlias.DisplayMember = "Alias";
+
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
