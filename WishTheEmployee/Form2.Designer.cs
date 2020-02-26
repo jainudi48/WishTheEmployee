@@ -114,16 +114,16 @@
             this.cbAlias.Name = "cbAlias";
             this.cbAlias.Size = new System.Drawing.Size(268, 33);
             this.cbAlias.TabIndex = 23;
+            this.cbAlias.SelectedIndexChanged += new System.EventHandler(this.cbAlias_SelectedIndexChanged_1);
             // 
             // btnPull
             // 
             this.btnPull.Location = new System.Drawing.Point(608, 74);
             this.btnPull.Name = "btnPull";
-            this.btnPull.Size = new System.Drawing.Size(80, 42);
+            this.btnPull.Size = new System.Drawing.Size(81, 42);
             this.btnPull.TabIndex = 24;
             this.btnPull.Text = "Pull";
             this.btnPull.UseVisualStyleBackColor = true;
-            this.btnPull.Click += new System.EventHandler(this.btnPull_Click);
             // 
             // Form2
             // 

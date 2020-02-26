@@ -42,32 +42,10 @@ namespace WishTheEmployee
                     MessageBox.Show("Error! Database file does not contain anything.");
             }
 
-
             // Populate the Combo Box
             cbAlias.ValueMember = listOfEmpProfiles.employeeProfiles.FirstOrDefault<EmployeeProfile>().Alias;
             cbAlias.DataSource = listOfEmpProfiles.employeeProfiles;
            
-        }
-
-        private void btnPull_Click(object sender, EventArgs e)
-        {
-            cbAlias.Enabled = false;
-            
-            // Below two lines need to be changed 
-            string selectedEmpProfile;
-            selectedEmpProfile = listOfEmpProfiles.employeeProfiles.FirstOrDefault<EmployeeProfile>().Alias;
-            
-
-            // Find selected item
-            foreach (var empProfile in listOfEmpProfiles.employeeProfiles)
-            {
-                if (empProfile.Alias.Equals(selectedEmpProfile))
-                {
-                    tbName.Text = empProfile.EmpName;
-                    dtpDOB.Value = empProfile.DateOfBirthday;
-                    dtpDOJ.Value = empProfile.DateOfJoining;
-                }
-            }
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
@@ -105,6 +83,26 @@ namespace WishTheEmployee
 
             string jsonString = JsonConvert.SerializeObject(listOfEmpProfiles, Formatting.Indented);
             File.WriteAllText(serializedFileName, jsonString);
+        }
+
+        
+        private void cbAlias_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            // Below two lines need to be changed 
+            string selectedEmpProfile;
+            selectedEmpProfile = listOfEmpProfiles.employeeProfiles.FirstOrDefault<EmployeeProfile>().Alias;
+
+
+            // Find selected item
+            foreach (var empProfile in listOfEmpProfiles.employeeProfiles)
+            {
+                if (empProfile.Alias.Equals(selectedEmpProfile))
+                {
+                    tbName.Text = empProfile.EmpName;
+                    dtpDOB.Value = empProfile.DateOfBirthday;
+                    dtpDOJ.Value = empProfile.DateOfJoining;
+                }
+            }
         }
     }
 }
