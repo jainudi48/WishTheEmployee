@@ -46,6 +46,10 @@ namespace WishTheEmployee
                     MessageBox.Show("Error! Database file does not contain anything.");
             }
 
+            // Check if data source has no items
+            if (listOfEmpProfiles.employeeProfiles.Count == 0)
+                ClearForm();
+
             // Populate the Combo Box
             cbAlias.DataSource = listOfEmpProfiles.employeeProfiles;
             cbAlias.DisplayMember = "Alias";
@@ -73,7 +77,14 @@ namespace WishTheEmployee
             FillFormWithLatestChanged();
         }
 
-        
+        private void ClearForm()
+        {
+            cbAlias.ResetText();
+            tbName.Clear();
+            dtpDOB.ResetText();
+            dtpDOJ.ResetText();
+        }
+
         private void cbAlias_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             // Get selected item
@@ -98,8 +109,7 @@ namespace WishTheEmployee
         private void btnDeleteSelected_Click(object sender, EventArgs e)
         {
             string selectedEmpProfile;
-            var selectedItem = (EmployeeProfile)cbAlias.SelectedItem;
-            selectedEmpProfile = selectedItem.Alias;
+            selectedEmpProfile = cbAlias.Text.Trim();
 
             listOfEmpProfiles.employeeProfiles.RemoveAll(x => x.Alias.Equals(selectedEmpProfile));
 
