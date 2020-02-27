@@ -37,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbAlias = new System.Windows.Forms.ComboBox();
-            this.btnPull = new System.Windows.Forms.Button();
+            this.btnDeleteSelected = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label5
@@ -51,10 +51,10 @@
             // 
             // btnSaveChanges
             // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(296, 344);
+            this.btnSaveChanges.Location = new System.Drawing.Point(181, 342);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(201, 48);
-            this.btnSaveChanges.TabIndex = 16;
+            this.btnSaveChanges.TabIndex = 4;
             this.btnSaveChanges.Text = "Save Changes";
             this.btnSaveChanges.UseVisualStyleBackColor = true;
             this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
@@ -64,21 +64,21 @@
             this.dtpDOJ.Location = new System.Drawing.Point(334, 250);
             this.dtpDOJ.Name = "dtpDOJ";
             this.dtpDOJ.Size = new System.Drawing.Size(354, 31);
-            this.dtpDOJ.TabIndex = 15;
+            this.dtpDOJ.TabIndex = 3;
             // 
             // dtpDOB
             // 
             this.dtpDOB.Location = new System.Drawing.Point(334, 193);
             this.dtpDOB.Name = "dtpDOB";
             this.dtpDOB.Size = new System.Drawing.Size(354, 31);
-            this.dtpDOB.TabIndex = 14;
+            this.dtpDOB.TabIndex = 2;
             // 
             // tbName
             // 
             this.tbName.Location = new System.Drawing.Point(334, 136);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(354, 31);
-            this.tbName.TabIndex = 13;
+            this.tbName.TabIndex = 1;
             // 
             // label3
             // 
@@ -112,25 +112,26 @@
             this.cbAlias.FormattingEnabled = true;
             this.cbAlias.Location = new System.Drawing.Point(334, 74);
             this.cbAlias.Name = "cbAlias";
-            this.cbAlias.Size = new System.Drawing.Size(268, 33);
-            this.cbAlias.TabIndex = 23;
+            this.cbAlias.Size = new System.Drawing.Size(354, 33);
+            this.cbAlias.TabIndex = 0;
             this.cbAlias.SelectedIndexChanged += new System.EventHandler(this.cbAlias_SelectedIndexChanged_1);
             // 
-            // btnPull
+            // btnDeleteSelected
             // 
-            this.btnPull.Location = new System.Drawing.Point(608, 74);
-            this.btnPull.Name = "btnPull";
-            this.btnPull.Size = new System.Drawing.Size(81, 42);
-            this.btnPull.TabIndex = 24;
-            this.btnPull.Text = "Pull";
-            this.btnPull.UseVisualStyleBackColor = true;
+            this.btnDeleteSelected.Location = new System.Drawing.Point(422, 342);
+            this.btnDeleteSelected.Name = "btnDeleteSelected";
+            this.btnDeleteSelected.Size = new System.Drawing.Size(201, 48);
+            this.btnDeleteSelected.TabIndex = 5;
+            this.btnDeleteSelected.Text = "Delete Selected";
+            this.btnDeleteSelected.UseVisualStyleBackColor = true;
+            this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnPull);
+            this.Controls.Add(this.btnDeleteSelected);
             this.Controls.Add(this.cbAlias);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnSaveChanges);
@@ -141,7 +142,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "View/Modify Employee Profiles";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -158,6 +159,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbAlias;
-        private System.Windows.Forms.Button btnPull;
+        private System.Windows.Forms.Button btnDeleteSelected;
     }
 }

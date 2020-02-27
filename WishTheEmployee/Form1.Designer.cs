@@ -93,7 +93,7 @@
             // 
             this.btnSave.Location = new System.Drawing.Point(165, 293);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 48);
+            this.btnSave.Size = new System.Drawing.Size(95, 48);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             // 
             this.btnReset.Location = new System.Drawing.Point(327, 293);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(90, 48);
+            this.btnReset.Size = new System.Drawing.Size(95, 48);
             this.btnReset.TabIndex = 5;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@
             // 
             this.btnEdit.Location = new System.Drawing.Point(489, 293);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(90, 48);
+            this.btnEdit.Size = new System.Drawing.Size(95, 48);
             this.btnEdit.TabIndex = 11;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Modify";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 

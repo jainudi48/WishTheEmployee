@@ -39,6 +39,8 @@ namespace WishTheEmployee
             empProfile.DateOfJoining = doj;
 
             SerializeEmpProfile(empProfile);
+
+            ClearAllFields();
         }
 
         private void SerializeEmpProfile(EmployeeProfile empProfile)
@@ -67,6 +69,11 @@ namespace WishTheEmployee
         }
 
         private void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearAllFields();
+        }
+
+        private void ClearAllFields()
         {
             tbAlias.Clear();
             tbName.Clear();

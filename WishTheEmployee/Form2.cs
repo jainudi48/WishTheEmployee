@@ -24,7 +24,11 @@ namespace WishTheEmployee
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
+            FillFormWithLatestChanged();
+        }
+
+        private void FillFormWithLatestChanged()
+        {
             string existingJsonString;
             listOfEmpProfiles = new EmployeeProfiles();
             listOfEmpProfiles.employeeProfiles = new List<EmployeeProfile>();
@@ -45,16 +49,14 @@ namespace WishTheEmployee
             // Populate the Combo Box
             cbAlias.DataSource = listOfEmpProfiles.employeeProfiles;
             cbAlias.DisplayMember = "Alias";
-
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            // Below two lines need to be changed 
+            // Get selected item
             string selectedEmpProfile;
-            selectedEmpProfile = listOfEmpProfiles.employeeProfiles.FirstOrDefault<EmployeeProfile>().Alias;
-
-
+            selectedEmpProfile = cbAlias.Text.ToString();
+             
             foreach (var empProfile in listOfEmpProfiles.employeeProfiles)
             {
                 if(empProfile.Alias.Equals(selectedEmpProfile))
@@ -65,32 +67,20 @@ namespace WishTheEmployee
                 }
             }
 
-            // Serialize the modified objects
-            //string existingJsonString;
-            //if (!File.Exists(serializedFileName))
-            //{
-            //    FileStream fs = File.Create(serializedFileName);
-            //    fs.Close();
-            //}
-            //else
-            //{
-            //    existingJsonString = File.ReadAllText(serializedFileName);
-            //    if (!existingJsonString.Equals(""))
-            //        listOfEmpProfiles = JsonConvert.DeserializeObject<EmployeeProfiles>(existingJsonString);
-            //    else
-            //        MessageBox.Show("Error! Database file does not contain anything.");
-            //}
-
             string jsonString = JsonConvert.SerializeObject(listOfEmpProfiles, Formatting.Indented);
             File.WriteAllText(serializedFileName, jsonString);
+
+            FillFormWithLatestChanged();
         }
 
         
         private void cbAlias_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            // Below two lines need to be changed 
+            // Get selected item
             string selectedEmpProfile;
-            selectedEmpProfile = listOfEmpProfiles.employeeProfiles.FirstOrDefault<EmployeeProfile>().Alias;
+            selectedEmpProfile = cbAlias.Text.ToString();
+
+            // code here to pull other properties of selected object
 
 
             // Find selected item
@@ -103,6 +93,20 @@ namespace WishTheEmployee
                     dtpDOJ.Value = empProfile.DateOfJoining;
                 }
             }
+        }
+
+        private void btnDeleteSelected_Click(object sender, EventArgs e)
+        {
+            string selectedEmpProfile;
+            var selectedItem = (EmployeeProfile)cbAlias.SelectedItem;
+            selectedEmpProfile = selectedItem.Alias;
+
+            listOfEmpProfiles.employeeProfiles.RemoveAll(x => x.Alias.Equals(selectedEmpProfile));
+
+            string jsonString = JsonConvert.SerializeObject(listOfEmpProfiles, Formatting.Indented);
+            File.WriteAllText(serializedFileName, jsonString);
+
+            FillFormWithLatestChanged();
         }
     }
 }
