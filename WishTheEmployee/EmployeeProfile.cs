@@ -18,6 +18,6 @@ namespace WishTheEmployee
 
     public class EmployeeProfiles
     {
-        public List<EmployeeProfile> employeeProfiles { get; set; }
+        public List<EmployeeProfile> listOfEmployeeProfiles { get; set; }
     }
 }

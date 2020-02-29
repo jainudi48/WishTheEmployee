@@ -46,8 +46,8 @@ namespace WishTheEmployee
         private void SerializeEmpProfile(EmployeeProfile empProfile)
         {
             string existingJsonString;
-            EmployeeProfiles listOfEmpProfiles = new EmployeeProfiles();
-            listOfEmpProfiles.employeeProfiles = new List<EmployeeProfile>();
+            EmployeeProfiles empProfiles = new EmployeeProfiles();
+            empProfiles.listOfEmployeeProfiles = new List<EmployeeProfile>();
             if (!File.Exists(serializedFileName))
             {
                 FileStream fs = File.Create(serializedFileName);
@@ -57,14 +57,14 @@ namespace WishTheEmployee
             {
                 existingJsonString = File.ReadAllText(serializedFileName);
                 if (!existingJsonString.Equals(""))
-                    listOfEmpProfiles = JsonConvert.DeserializeObject<EmployeeProfiles>(existingJsonString);
+                    empProfiles = JsonConvert.DeserializeObject<EmployeeProfiles>(existingJsonString);
                 else
                     MessageBox.Show("Error! Database file does not contain anything.");
             }
 
-            listOfEmpProfiles.employeeProfiles.Add(empProfile);
+            empProfiles.listOfEmployeeProfiles.Add(empProfile);
             
-            string jsonString = JsonConvert.SerializeObject(listOfEmpProfiles, Formatting.Indented);
+            string jsonString = JsonConvert.SerializeObject(empProfiles, Formatting.Indented);
             File.WriteAllText(serializedFileName, jsonString);
         }
 
