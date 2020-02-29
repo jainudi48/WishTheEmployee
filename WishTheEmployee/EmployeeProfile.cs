@@ -12,6 +12,8 @@ namespace WishTheEmployee
         public string EmpName{ get; set; }
         public DateTime DateOfBirthday{ get; set; }
         public DateTime DateOfJoining{ get; set; }
+        public bool birthdayWishSentForCurrentYear { get; set; }
+        public bool serviceAnniversaryWishSentForCurrentYear { get; set; }
     }
 
     public class EmployeeProfiles
