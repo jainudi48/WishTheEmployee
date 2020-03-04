@@ -15,7 +15,7 @@ namespace WishTheEmployee
     public partial class Form2 : Form
     {
         string serializedFileName;
-        EmployeeProfiles listOfEmpProfiles;
+        EmployeeProfiles empProfiles;
         public Form2(string filepath)
         {
             InitializeComponent();
@@ -30,8 +30,8 @@ namespace WishTheEmployee
         private void FillFormWithLatestChanged()
         {
             string existingJsonString;
-            listOfEmpProfiles = new EmployeeProfiles();
-            listOfEmpProfiles.employeeProfiles = new List<EmployeeProfile>();
+            empProfiles = new EmployeeProfiles();
+            empProfiles.listOfEmployeeProfiles = new List<EmployeeProfile>();
             if (!File.Exists(serializedFileName))
             {
                 FileStream fs = File.Create(serializedFileName);
@@ -41,17 +41,17 @@ namespace WishTheEmployee
             {
                 existingJsonString = File.ReadAllText(serializedFileName);
                 if (!existingJsonString.Equals(""))
-                    listOfEmpProfiles = JsonConvert.DeserializeObject<EmployeeProfiles>(existingJsonString);
+                    empProfiles = JsonConvert.DeserializeObject<EmployeeProfiles>(existingJsonString);
                 else
                     MessageBox.Show("Error! Database file does not contain anything.");
             }
 
             // Check if data source has no items
-            if (listOfEmpProfiles.employeeProfiles.Count == 0)
+            if (empProfiles.listOfEmployeeProfiles == null)
                 ClearForm();
 
             // Populate the Combo Box
-            cbAlias.DataSource = listOfEmpProfiles.employeeProfiles;
+            cbAlias.DataSource = empProfiles.listOfEmployeeProfiles;
             cbAlias.DisplayMember = "Alias";
         }
 
@@ -60,8 +60,12 @@ namespace WishTheEmployee
             // Get selected item
             string selectedEmpProfile;
             selectedEmpProfile = cbAlias.Text.ToString();
-             
-            foreach (var empProfile in listOfEmpProfiles.employeeProfiles)
+            if (selectedEmpProfile.Equals(""))
+                return;
+
+            if (empProfiles.listOfEmployeeProfiles == null)
+                empProfiles.listOfEmployeeProfiles = new List<EmployeeProfile>();
+            foreach (var empProfile in empProfiles.listOfEmployeeProfiles)
             {
                 if(empProfile.Alias.Equals(selectedEmpProfile))
                 {
@@ -71,7 +75,7 @@ namespace WishTheEmployee
                 }
             }
 
-            string jsonString = JsonConvert.SerializeObject(listOfEmpProfiles, Formatting.Indented);
+            string jsonString = JsonConvert.SerializeObject(empProfiles.listOfEmployeeProfiles, Formatting.Indented);
             File.WriteAllText(serializedFileName, jsonString);
 
             FillFormWithLatestChanged();
@@ -95,7 +99,7 @@ namespace WishTheEmployee
 
 
             // Find selected item
-            foreach (var empProfile in listOfEmpProfiles.employeeProfiles)
+            foreach (var empProfile in empProfiles.listOfEmployeeProfiles)
             {
                 if (empProfile.Alias.Equals(selectedEmpProfile))
                 {
@@ -111,9 +115,9 @@ namespace WishTheEmployee
             string selectedEmpProfile;
             selectedEmpProfile = cbAlias.Text.Trim();
 
-            listOfEmpProfiles.employeeProfiles.RemoveAll(x => x.Alias.Equals(selectedEmpProfile));
+            empProfiles.listOfEmployeeProfiles.RemoveAll(x => x.Alias.Equals(selectedEmpProfile));
 
-            string jsonString = JsonConvert.SerializeObject(listOfEmpProfiles, Formatting.Indented);
+            string jsonString = JsonConvert.SerializeObject(empProfiles, Formatting.Indented);
             File.WriteAllText(serializedFileName, jsonString);
 
             FillFormWithLatestChanged();

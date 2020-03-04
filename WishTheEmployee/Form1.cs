@@ -62,6 +62,11 @@ namespace WishTheEmployee
                     MessageBox.Show("Error! Database file does not contain anything.");
             }
 
+            if(empProfiles.listOfEmployeeProfiles == null)
+            {
+                empProfiles.listOfEmployeeProfiles = new List<EmployeeProfile>();
+            }
+
             empProfiles.listOfEmployeeProfiles.Add(empProfile);
             
             string jsonString = JsonConvert.SerializeObject(empProfiles, Formatting.Indented);
