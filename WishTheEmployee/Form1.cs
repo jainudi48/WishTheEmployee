@@ -18,11 +18,16 @@ namespace WishTheEmployee
     {
         EmployeeProfile empProfile;
         string serializedFileName;
+        string CUR_USER_NAME;
+        const string LOCAL_USER = @"C:\Users\";
+        const string MICROSOFT_OUTLOOK = @"\AppData\Local\Microsoft\Outlook\";
         public Form1()
         {
             InitializeComponent();
 
-            serializedFileName = "EmployeeProfilesDatabase.txt";
+
+            CUR_USER_NAME = Environment.UserName;
+            serializedFileName = LOCAL_USER + CUR_USER_NAME + MICROSOFT_OUTLOOK + @"EmployeeProfilesDatabase.txt";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -58,8 +63,6 @@ namespace WishTheEmployee
                 existingJsonString = File.ReadAllText(serializedFileName);
                 if (!existingJsonString.Equals(""))
                     empProfiles = JsonConvert.DeserializeObject<EmployeeProfiles>(existingJsonString);
-                else
-                    MessageBox.Show("Error! Database file does not contain anything.");
             }
 
             if(empProfiles.listOfEmployeeProfiles == null)
