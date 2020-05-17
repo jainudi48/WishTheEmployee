@@ -43,9 +43,15 @@ namespace WishTheEmployee
             empProfile.DateOfBirthday = dob;
             empProfile.DateOfJoining = doj;
 
-            SerializeEmpProfile(empProfile);
-
-            ClearAllFields();
+            if(empProfile.Alias != "" && empProfile.EmpName != "")
+            {
+                SerializeEmpProfile(empProfile);
+                ClearAllFields();
+            }
+            else
+            {
+                MessageBox.Show("Employee alias and name cannot be null!", "Error");
+            }
         }
 
         private void SerializeEmpProfile(EmployeeProfile empProfile)

@@ -47,7 +47,7 @@ namespace WishTheEmployee
             }
 
             // Check if data source has no items
-            if (empProfiles.listOfEmployeeProfiles == null)
+            if (empProfiles.listOfEmployeeProfiles.Count == 0)
                 ClearForm();
 
             // Populate the Combo Box
