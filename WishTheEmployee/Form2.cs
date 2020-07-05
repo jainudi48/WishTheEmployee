@@ -75,7 +75,7 @@ namespace WishTheEmployee
                 }
             }
 
-            string jsonString = JsonConvert.SerializeObject(empProfiles.listOfEmployeeProfiles, Formatting.Indented);
+            string jsonString = JsonConvert.SerializeObject(empProfiles, Formatting.Indented);
             File.WriteAllText(serializedFileName, jsonString);
 
             FillFormWithLatestChanged();
